@@ -12,7 +12,7 @@ RUN apk add --no-cache \
         libstdc++ \
         sqlite-libs
 
-ARG MAILCATCHER_VERSION=0.7.1
+ARG MAILCATCHER_VERSION=0.8.0.beta2
 
 RUN apk add --no-cache --virtual .build-deps \
         ruby-dev \
