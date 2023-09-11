@@ -1,19 +1,16 @@
 version: '2'
 
 services:
-
   mail:
-    image: tophfr/mailcatcher:$VERSION
+    image: fridus/mailcatcher:$VERSION
     build:
       context: build
       args:
         MAILCATCHER_VERSION: $VERSION
     ports:
       - "$IP:1080:80"
-
   test:
-    image: tophfr/dockerize:latest
+    image: fridus/dockerize:latest
     depends_on:
       - mail
     command: "-wait tcp://mail:25 sh -c 'echo \"From: x@y.z\nSubject: bonjour de $$HOSTNAME v$VERSION\n\nca va bien ?\nbisou\" | sendmail -S mail aaa@zzz.eee'"
-
