@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.20
 
 RUN apk add --no-cache ca-certificates openssl
 
@@ -10,12 +10,13 @@ RUN apk add --no-cache \
         libstdc++ \
         sqlite-libs
 
-ARG MAILCATCHER_VERSION=0.9.0
+ARG MAILCATCHER_VERSION=0.10.0
 
 RUN apk add --no-cache --virtual .build-deps \
         ruby-dev \
         make g++ \
         sqlite-dev \
+    && gem install -v 1.6.9 sqlite3 -N \
     && gem install -v $MAILCATCHER_VERSION mailcatcher -N \
     && apk del .build-deps
 

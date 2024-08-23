@@ -10,7 +10,7 @@ services:
     ports:
       - "$IP:1080:80"
   test:
-    image: fridus/dockerize:latest
+    image: tophfr/dockerize:latest
     depends_on:
       - mail
     command: "-wait tcp://mail:25 sh -c 'echo \"From: x@y.z\nSubject: bonjour de $$HOSTNAME v$VERSION\n\nca va bien ?\nbisou\" | sendmail -S mail aaa@zzz.eee'"
